@@ -6,7 +6,7 @@ To use these dotfiles, you will need to have Git and Zsh installed on your syste
 
 1. Clone the repository to your local machine:
 ```console
-git clone https://github.com/your-username/dotfiles.git
+git clone https://github.com/vaibhava17/dotfiles.git
 ```
 
 2. Move the Git configuration file to your home directory:
