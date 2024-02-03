@@ -67,8 +67,7 @@ COMPLETION_WAITING_DOTS="true"
 # User configuration
 
 ## Aliases
-alias u="sudo pacman -Syu --noconfirm"
-alias i="sudo pacman -S"
+alias u="brew update --auto-update"
 alias y="yay -Syu"
 alias r="sudo pacman -Rns"
 alias yi="yay -S"
@@ -88,11 +87,15 @@ alias grep='grep --color=auto'
 alias ys="yay -s"
 alias e="exit"
 alias ll='ls -lisa --color=auto'
+alias python='python2'
+alias pip='pip2'
+alias i='brew install'
 
 ## Plugins
 plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
+  zsh-wakatime 
   )
 
 #Zsh Theme
@@ -116,6 +119,7 @@ BULLETTRAIN_CONTEXT_BG=#234882
 BULLETTRAIN_GIT_BG=#9e48a1
 
 ## Commands to run at start
+neofetch
 
 ## Exports
 
@@ -131,3 +135,12 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.nvm/nvm.sh
+
+# bun completions
+[ -s "/Users/vaibhava17/.bun/_bun" ] && source "/Users/vaibhava17/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH=${PATH}:/usr/local/mysql/bin
+export PATH=${PATH}:/Applications/XAMPP/xamppfiles/bin
