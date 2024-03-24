@@ -1,3 +1,5 @@
+# CodeWhisperer pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -95,11 +97,11 @@ alias i='brew install'
 plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
-  zsh-wakatime 
+  wakatime 
   )
 
 #Zsh Theme
-ZSH_THEME='random'
+# ZSH_THEME='random'
 
 ## Bullet-Train Configurations
 BULLETTRAIN_PROMPT_ORDER=(
@@ -118,29 +120,33 @@ BULLETTRAIN_TIME_12HR=true
 BULLETTRAIN_CONTEXT_BG=#234882
 BULLETTRAIN_GIT_BG=#9e48a1
 
-## Commands to run at start
-neofetch
-
 ## Exports
 
+# Path to homebrew
+export PATH=/opt/homebrew/bin:$PATH
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-# Path to your oh-my-zsh installation.
+# Path to oh-my-zsh.
 export ZSH="$HOME/.oh-my-zsh"
 # Set PATH so it includes user's private bin directories
 export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
+# Path to nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Path to mysql
+export PATH=${PATH}:/usr/local/mysql/bin/
 
 ## Source Files
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.nvm/nvm.sh
+source $HOME/Development/google-cloud-sdk/path.zsh.inc
+source $HOME/Development/google-cloud-sdk/completion.zsh.inc
+source /opt/homebrew/share/antigen/antigen.zsh
 
-# bun completions
-[ -s "/Users/vaibhava17/.bun/_bun" ] && source "/Users/vaibhava17/.bun/_bun"
+# CodeWhisperer post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH=${PATH}:/usr/local/mysql/bin
-export PATH=${PATH}:/Applications/XAMPP/xamppfiles/bin
+
+eval "$(starship init zsh)"
