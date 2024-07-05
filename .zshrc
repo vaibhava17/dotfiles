@@ -145,4 +145,5 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/Development/google-cloud-sdk/path.zsh.inc
 source $HOME/Development/google-cloud-sdk/completion.zsh.inc
-source /opt/homebrew/share/antigen/antigen.zsheval "$(starship init zsh)"
+source /opt/homebrew/share/antigen/antigen.zsh
+eval "$(starship init zsh)"
