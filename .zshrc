@@ -1,5 +1,3 @@
-# CodeWhisperer pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -130,12 +128,16 @@ export LANG=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"
 # Set PATH so it includes user's private bin directories
 export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
-# Path to nvm
+# Path to nvm v0.39.7
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# Path to mysql
-export PATH=${PATH}:/usr/local/mysql/bin/
+# Path to mysql v8.0.36
+export PATH="${PATH}:/usr/local/mysql/bin/"
+# Path to solr v6.0.0
+export PATH="$HOME/Development/solr-6.0.0/bin:$PATH"
+# Path to flutter v3.22.2
+export PATH="$HOME/Development/flutter/bin:$PATH"
 
 ## Source Files
 source $ZSH/oh-my-zsh.sh
@@ -143,10 +145,4 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/Development/google-cloud-sdk/path.zsh.inc
 source $HOME/Development/google-cloud-sdk/completion.zsh.inc
-source /opt/homebrew/share/antigen/antigen.zsh
-
-# CodeWhisperer post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
-
-
-eval "$(starship init zsh)"
+source /opt/homebrew/share/antigen/antigen.zsheval "$(starship init zsh)"
