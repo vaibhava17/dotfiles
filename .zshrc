@@ -1,7 +1,7 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#colorcoding 
+#colorcoding
 black='\[\e[0;30m\]'	# black
 red='\[\e[0;31m\]'		# red
 green='\[\e[0;32m\]'	# green
@@ -37,7 +37,7 @@ ALERT="${BWhite}${On_Red}" # Bold White on red background
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[cyan]%}\$(git branch --show-current 2>/dev/null | sed -e 's/^/ (/;s/$/)/')%{$fg[red]%}]%{$reset_color%}$%b "
 
 # History in cache directory:
 HISTFILE=~/.zsh_history
@@ -68,34 +68,35 @@ COMPLETION_WAITING_DOTS="true"
 
 ## Aliases
 alias u="brew update --auto-update"
-alias y="yay -Syu"
-alias r="sudo pacman -Rns"
-alias yi="yay -S"
-alias ll="exa -la"
-alias bat="bat"
 alias c='clear -x'
 alias ..='cd ..'
 alias ls='ls -CF --color=auto'
 alias mkdir='mkdir -pv'
-alias free='free -mt'
-alias ps='ps auxf'
-alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias wget='wget -c'
-alias histg='history | grep'
 alias myip='curl ipv4.icanhazip.com'
 alias grep='grep --color=auto'
-alias ys="yay -s"
 alias e="exit"
 alias ll='ls -lisa --color=auto'
-alias python='python2'
-alias pip='pip2'
 alias i='brew install'
+alias apache='brew services start httpd'
+alias apaches='brew services stop httpd'
+alias apacher='brew services restart httpd'
+alias redis='brew services start redis'
+alias rediss='brew services stop redis'
+alias redisr='brew services restart redis'
+alias mongo='brew services start mongodb-community@6.0'
+alias mongos='brew services stop mongodb-community@6.0'
+alias mongor='brew services restart mongodb-community@6.0'
+alias elastic='brew services start elastic/tap/elasticsearch-full'
+alias elastics='brew services stop elastic/tap/elasticsearch-full'
+alias elasticr='brew services restart elastic/tap/elasticsearch-full'
+alias gcloud='/var/google-cloud-sdk/bin/gcloud'
+alias charm='open -a PyCharm'
 
 ## Plugins
 plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
-  wakatime 
   )
 
 #Zsh Theme
@@ -130,20 +131,53 @@ export ZSH="$HOME/.oh-my-zsh"
 export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 # Path to nvm v0.39.7
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 # Path to mysql v8.0.36
 export PATH="${PATH}:/usr/local/mysql/bin/"
 # Path to solr v6.0.0
 export PATH="$HOME/Development/solr-6.0.0/bin:$PATH"
 # Path to flutter v3.22.2
 export PATH="$HOME/Development/flutter/bin:$PATH"
+# Android SDK
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 ## Source Files
 source $ZSH/oh-my-zsh.sh
-source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/Development/google-cloud-sdk/path.zsh.inc
-source $HOME/Development/google-cloud-sdk/completion.zsh.inc
-source /opt/homebrew/share/antigen/antigen.zsh
-eval "$(starship init zsh)"
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $HOME/Development/google-cloud-sdk/path.zsh.inc
+# source $HOME/Development/google-cloud-sdk/completion.zsh.inc
+
+neofetch
+
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+# export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+## Java for react native
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vaibhava17-pro/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vaibhava17-pro/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vaibhava17-pro/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vaibhava17-pro/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+export PATH="/usr/local/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/rust/bin:$PATH"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/vaibhava17-air/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+eval "$(atuin init zsh)"
